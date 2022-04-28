@@ -2,6 +2,11 @@ import 'package:bmi_calc/common/Buttons.dart';
 import 'package:bmi_calc/common/Custom Slider.dart';
 import 'package:flutter/material.dart';
 
+double height = 100;
+bool ismale = true;
+int age = 8;
+int weight = 50;
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -10,11 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  double currentPos = 100;
-  bool ismale = true;
-  int age = 8;
-  int weight = 50;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,11 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Expanded(
                       flex: 4,
                       child: mySlider(
-                          pos: currentPos,
-                          titleDown: currentPos.round().toString(),
+                          pos: height,
+                          titleDown: height.round().toString(),
                           titleUp: "Height",
                           onChange: (value) {
-                            currentPos = value;
+                            height = value;
                             setState(() {});
                           }),
                     ),
