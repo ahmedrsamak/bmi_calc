@@ -19,104 +19,115 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    flex: 6,
-                    child: imageButton(
-                      imageDir: "assets/images/male.png",
-                      onTap: () {
-                        ismale = true;
-                        setState(() {});
-                      },
-                      isPressed: ismale,
-                      title: "male",
-                    ),
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: mySlider(
-                        pos: currentPos,
-                        titleDown: currentPos.round().toString(),
-                        titleUp: "Height",
-                        onChange: (value) {
-                          currentPos = value;
+        appBar: AppBar(
+          centerTitle: true,
+          toolbarHeight: 35,
+          title: Text(
+            "BMI Calclutor",
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      flex: 6,
+                      child: imageButton(
+                        imageDir: "assets/images/male.png",
+                        onTap: () {
+                          ismale = true;
                           setState(() {});
-                        }),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: imageButton(
-                      imageDir: "assets/images/female.png",
-                      onTap: () {
-                        ismale = false;
-                        setState(() {});
-                      },
-                      isPressed: !ismale,
-                      title: "female",
+                        },
+                        isPressed: ismale,
+                        title: "male",
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100),
-              child: Container(height: 2, color: Colors.blue),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: containerIcon(
-                          textUp: "AGE",
-                          textDown: age.toString(),
-                          onTapInc: () {
-                            age++;
-                            setState(() {});
-                          },
-                          onTapDec: () {
-                            age--;
+                    Expanded(
+                      flex: 4,
+                      child: mySlider(
+                          pos: currentPos,
+                          titleDown: currentPos.round().toString(),
+                          titleUp: "Height",
+                          onChange: (value) {
+                            currentPos = value;
                             setState(() {});
                           }),
-                      flex: 10),
-                  Spacer(flex: 1),
-                  Expanded(
-                      child: containerIcon(
-                          textUp: "WEIGHT",
-                          textDown: weight.toString(),
-                          onTapInc: () {
-                            weight++;
-                            setState(() {});
-                          },
-                          onTapDec: () {
-                            weight--;
-                            setState(() {});
-                          }),
-                      flex: 10),
-                ],
+                    ),
+                    Expanded(
+                      flex: 6,
+                      child: imageButton(
+                        imageDir: "assets/images/female.png",
+                        onTap: () {
+                          ismale = false;
+                          setState(() {});
+                        },
+                        isPressed: !ismale,
+                        title: "female",
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Container(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Calclute",
-                      style: TextStyle(fontSize: 30),
-                    )),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: Container(height: 2, color: Colors.blue),
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: containerIcon(
+                            textUp: "AGE",
+                            textDown: age.toString(),
+                            onTapInc: () {
+                              age++;
+                              setState(() {});
+                            },
+                            onTapDec: () {
+                              age--;
+                              setState(() {});
+                            }),
+                        flex: 10),
+                    Spacer(flex: 1),
+                    Expanded(
+                        child: containerIcon(
+                            textUp: "WEIGHT",
+                            textDown: weight.toString(),
+                            onTapInc: () {
+                              weight++;
+                              setState(() {});
+                            },
+                            onTapDec: () {
+                              weight--;
+                              setState(() {});
+                            }),
+                        flex: 10),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Container(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Calclute",
+                        style: TextStyle(fontSize: 30),
+                      )),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
