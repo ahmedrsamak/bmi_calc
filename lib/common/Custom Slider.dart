@@ -16,6 +16,7 @@ Widget mySlider(
         quarterTurns: 3,
         child: SliderTheme(
           data: SliderThemeData(
+            trackHeight: 8,
             activeTrackColor: Colors.blueGrey,
             inactiveTrackColor: Colors.black,
             overlayColor: Colors.blueGrey,
