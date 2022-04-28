@@ -43,6 +43,8 @@ Widget containerIcon({
   String textDown = "",
   required void Function() onTapInc,
   required void Function() onTapDec,
+  required Object heroKeyDec,
+  required Object heroKeyInc,
 }) {
   return Container(
     decoration: BoxDecoration(
@@ -61,6 +63,7 @@ Widget containerIcon({
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FloatingActionButton.small(
+                heroTag: heroKeyDec,
                 backgroundColor: Colors.blue,
                 onPressed: () {
                   onTapDec();
@@ -77,6 +80,7 @@ Widget containerIcon({
                     style: TextStyle(fontSize: textDown == "" ? 0 : 30)),
               ),
               FloatingActionButton.small(
+                heroTag: heroKeyInc,
                 backgroundColor: Colors.blue,
                 onPressed: onTapInc,
                 child: Icon(

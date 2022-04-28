@@ -1,5 +1,4 @@
 import 'package:bmi_calc/screens/HomeScreen.dart';
-import 'package:bmi_calc/screens/ResultsScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +11,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ResultsScreen(),
+    return const MaterialApp(
+      home: HomeScreen(),
     );
   }
 }

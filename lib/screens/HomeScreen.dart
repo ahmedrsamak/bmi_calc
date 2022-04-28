@@ -1,11 +1,7 @@
 import 'package:bmi_calc/common/Buttons.dart';
 import 'package:bmi_calc/common/Custom Slider.dart';
+import 'package:bmi_calc/screens/ResultsScreen.dart';
 import 'package:flutter/material.dart';
-
-double height = 100;
-bool ismale = true;
-int age = 8;
-int weight = 50;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,6 +11,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  double height = 100;
+  bool ismale = true;
+  int age = 8;
+  int weight = 50;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,15 +23,15 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           centerTitle: true,
           toolbarHeight: 35,
-          title: Text(
-            "BMI Calclutor",
+          title: const Text(
+            "BMI Calculator",
             style: TextStyle(fontSize: 20),
           ),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               IntrinsicHeight(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -73,12 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 100),
                 child: Container(height: 2, color: Colors.blue),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -94,9 +95,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTapDec: () {
                               age--;
                               setState(() {});
-                            }),
+                            },
+                            heroKeyInc: 1,
+                            heroKeyDec: 2),
                         flex: 10),
-                    Spacer(flex: 1),
+                    const Spacer(flex: 1),
                     Expanded(
                         child: containerIcon(
                             textUp: "WEIGHT",
@@ -108,20 +111,33 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTapDec: () {
                               weight--;
                               setState(() {});
-                            }),
+                            },
+                            heroKeyInc: 3,
+                            heroKeyDec: 4),
                         flex: 10),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(15),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Calclute",
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultsScreen(
+                                height: height,
+                                ismale: ismale,
+                                age: age,
+                                weight: weight),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Calculate",
                         style: TextStyle(fontSize: 30),
                       )),
                 ),

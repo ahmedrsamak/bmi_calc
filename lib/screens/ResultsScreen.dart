@@ -1,11 +1,20 @@
 import 'dart:math';
 
 import 'package:bmi_calc/common/Labels.dart';
-import 'package:bmi_calc/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
 class ResultsScreen extends StatefulWidget {
-  const ResultsScreen({Key? key}) : super(key: key);
+  final double? height;
+  final bool? ismale;
+  final int? age;
+  final int? weight;
+  const ResultsScreen(
+      {Key? key,
+      required this.weight,
+      this.age,
+      this.ismale,
+      required this.height})
+      : super(key: key);
 
   @override
   State<ResultsScreen> createState() => _ResultsScreenState();
@@ -14,7 +23,7 @@ class ResultsScreen extends StatefulWidget {
 class _ResultsScreenState extends State<ResultsScreen> {
   @override
   Widget build(BuildContext context) {
-    double bmiResult = (weight / (pow((height / 100), 2)));
+    double bmiResult = (widget.weight! / (pow((widget.height! / 100), 2)));
     String? bmiRef() {
       if (bmiResult <= 18.5) {
         return "Under weight";
@@ -24,7 +33,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
         return "Over weight";
       } else if (bmiResult > 30 && bmiResult <= 39.9) {
         return "Obese";
-      } else if (bmiResult >= 40) {
+      } else {
         return "Morbidly obese";
       }
     }
@@ -33,15 +42,16 @@ class _ResultsScreenState extends State<ResultsScreen> {
       backgroundColor: Colors.white70,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white60,
+        backgroundColor: Colors.blueGrey,
         title: myText("Result"),
       ),
       body: SafeArea(
         child: Center(
           child: IntrinsicHeight(
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
+                color: Colors.blueGrey,
                 border: Border.all(color: Colors.black, width: 3),
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -49,13 +59,13 @@ class _ResultsScreenState extends State<ResultsScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 //crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  myText("Age is: $age"),
-                  myText("Wieght is: $weight"),
-                  ismale == true
+                  myText("Age is: ${widget.age}"),
+                  myText("Weight is: ${widget.weight}"),
+                  widget.ismale == true
                       ? myText("you are male")
                       : myText("you are female"),
-                  myText("Your BMI is $bmiResult"),
-                  myText("Bassed on Your BMI you are"),
+                  myText("Your BMI is ${bmiResult.round()}"),
+                  myText("Based on Your BMI you are"),
                   myText(bmiRef()!),
                 ],
               ),
