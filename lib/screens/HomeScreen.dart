@@ -1,5 +1,6 @@
 import 'package:bmi_calc/common/Buttons.dart';
 import 'package:bmi_calc/common/Custom Slider.dart';
+import 'package:bmi_calc/common/others.dart';
 import 'package:bmi_calc/screens/ResultsScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -124,22 +125,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ResultsScreen(
-                                height: height,
-                                ismale: ismale,
-                                age: age,
-                                weight: weight),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        "Calculate",
-                        style: TextStyle(fontSize: 30),
-                      )),
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => ResultsScreen(
+                      //         height: height,
+                      //         ismale: ismale,
+                      //         age: age,
+                      //         weight: weight),
+                      //   ),
+                      // );
+                      Navigating(
+                        context: context,
+                        screen: ResultsScreen(
+                          weight: weight,
+                          height: height,
+                          age: age,
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Calculate",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
                 ),
               ),
             ],
